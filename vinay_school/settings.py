@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-awkx9k^vh-5+6v0o_9xmz!!9!&ax5_%yovk_8%^a8zni%!m0y4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['VinayDriving.onrender.com']
+ALLOWED_HOSTS = ['vinay_school1.onrender.com']
 
 
 # Application definition
