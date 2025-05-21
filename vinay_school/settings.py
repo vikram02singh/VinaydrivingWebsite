@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-awkx9k^vh-5+6v0o_9xmz!!9!&ax5_%yovk_8%^a8zni%!m0y4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['vinay_school.onrender.com']
+ALLOWED_HOSTS = ['vinay-school.onrender.com']
 
 
 # Application definition
