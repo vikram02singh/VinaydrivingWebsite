@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <body>
+    <header>
+        <div class="logo-container" aria-label="Vinay Driving School logo">
+            <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="30" fill="none" stroke="#fff" stroke-width="2"/>
+                <circle cx="32" cy="32" r="10" fill="#ffcc00" />
+                <path d="M32 12v8M32 44v8M12 32h8M44 32h8M22.6 22.6l5.6 5.6M35.8 35.8l5.6 5.6M22.6 41.4l5.6-5.6M35.8 28.2l5.6-5.6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h1>Vinay Driving School</h1>
+        </div>
+        <nav>
+            <a href="#intro">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="tel:+919876543210" class="call-button" aria-label="Call Vinay Driving School">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.36 11.36 0 003.56 1.13 1 1 0 01.9 1v3.34a1 1 0 01-1 1A17 17 0 013 6a1 1 0 011-1h3.34a1 1 0 011 .9 11.36 11.36 0 001.13 3.56 1 1 0 01-.21 1.11l-2.64 2.22z" stroke="#003366" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+            </svg>
+            <span>Call</span>
+        </a>
+    </header>
+    <main>
+        <section id="intro" aria-label="Introduction to Vinay Driving School">
+            <h2>Welcome to Vinay Driving School</h2>
+            <p>Your trusted partner for professional driving training with expert instructors, modern vehicles, and personalized programs designed to make you a confident driver!</p>
+        </section>
+
+        <section id="courses" aria-label="Courses offered by Vinay Driving School">
+            <h2>Training Courses</h2>
+            <ul class="courses-list" tabindex="0">
+                <li>Beginner Driving Course</li>
+                <li>Advanced Driving Techniques</li>
+                <li>Refresher Driving Lessons</li>
+            </ul>
+        </section>
+
+        <section id="contact" aria-label="Contact Vinay Driving School">
+            <h2>Contact Us</h2>
+    
+            <form id="contactForm" method="post" novalidate>
+                  {% csrf_token %}
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
+                
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Your phone number" pattern="\\d{10,15}" title="Enter a valid phone number with 10 to 15 digits" required autocomplete="tel" />
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here" rows="3" required></textarea>
+                
+                <button type="submit" aria-label="Send message via WhatsApp">Send Message</button>
+            </form>
+
+            <div class="contact-info" tabindex="0">
+                <p><strong>Email:</strong> info@vinaydrivingschool.com</p>
+                <p><strong>Address:</strong> Behind AMU City School , Zamirbad , Masoodabad, Aligarh</p>
+                <p><strong>Phone:</strong> +91 9411047482</p>
+                <p><strong>Phone:</strong> +91 9412818997</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Vinay Driving School. All rights reserved.
+    </footer>
+    {% comment %} <script>
+        const form = document.getElementById('contactForm');
+        // WhatsApp number in international format without + or spaces
+        const whatsappNumber = "919411047482";
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validate form inputs
+            let isValid = form.checkValidity();
+            form.reportValidity();
+
+            if (isValid) {
+                // Gather form fields
+                const name = encodeURIComponent(form.name.value.trim());
+                const phone = encodeURIComponent(form.phone.value.trim());
+                const message = encodeURIComponent(form.message.value.trim());
+
+                // Create WhatsApp message text
+                const text = `Hello%20Vinay%20Driving%20School%21%0A%0A` +
+                             `Name:%20${name}%0A` +
+                             `Phone:%20${phone}%0A` +
+                             `Message:%20${message}`;
+
+                // Construct wa.me link
+                const waLink = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+                // Open WhatsApp chat in a new tab/window
+                window.open(waLink, '_blank');
+
+                // Reset the form after redirecting user
+                form.reset();
+            }
+        });
+    </script> {% endcomment %}
+</body>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+</head>
+<body>
