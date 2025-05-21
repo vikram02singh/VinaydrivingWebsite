@@ -1,8 +1,330 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <body>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Vinay Driving School</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #222;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+            outline: none;
+        }
+
+        header {
+            background: #003366;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .logo-container svg {
+            width: 40px;
+            height: 40px;
+            fill: #ffcc00;
+            stroke: white;
+            stroke-width: 1.5;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        nav {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            flex-grow: 1;
+            min-width: 180px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #ddd;
+            transition: color 0.3s ease;
+            padding: 6px 10px;
+            border-radius: 6px;
+            user-select: none;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #ffcc00;
+            background: rgba(255,204,0,0.15);
+            outline: none;
+        }
+
+        .call-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffcc00;
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            color: #003366;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+        }
+        .call-button:hover,
+        .call-button:focus {
+            background: #e6b800;
+            outline: none;
+        }
+        .call-button svg {
+            width: 22px;
+            height: 22px;
+            stroke: #003366;
+            stroke-width: 2.4;
+            fill: none;
+        }
+        .call-button span {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        main {
+            max-width: 350px;
+            margin: 20px auto 70px auto;
+            padding: 0 15px;
+        }
+
+        section {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+        }
+        
+        section h2 {
+            margin-bottom: 15px;
+            color: #003366;
+            text-align: center;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #ffcc00;
+            padding-bottom: 8px;
+        }
+
+        #intro p {
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+            color: #444;
+        }
+
+        .courses-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .courses-list li {
+            background: #e7f0ff;
+            margin: 10px 0;
+            padding: 12px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #003366;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+            transition: background 0.3s ease;
+        }
+
+        .courses-list li:hover,
+        .courses-list li:focus {
+            background: #cce0ff;
+            cursor: default;
+            outline: none;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #003366;
+            font-size: 0.95rem;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 14px;
+            border-radius: 6px;
+            border: 1.8px solid #ccc;
+            font-size: 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: border-color 0.3s ease;
+            resize: vertical;
+        }
+
+        form input:focus,
+        form textarea:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        button[type="submit"]:hover,
+        button[type="submit"]:focus {
+            background: #ffcc00;
+            color: #003366;
+            outline: none;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #333;
+            margin-top: 15px;
+            user-select: text;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px 10px;
+            background: #003366;
+            color: white;
+            font-size: 0.85rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            max-width: 350px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
+            user-select: none;
+            z-index: 100;
+        }
+
+        /* Scrollbar for mobile */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 3px;
+        }
+
+        /* Responsive adjustments for small screens */
+        @media (max-width: 400px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.25rem;
+            }
+
+            button[type="submit"] {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: 8px;
+            }
+
+            nav a {
+                font-size: 0.95rem;
+                padding: 5px 8px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            main {
+                max-width: 100%;
+                margin: 15px 10px 80px 10px;
+                padding: 0 10px;
+            }
+            section {
+                padding: 15px;
+            }
+            header {
+                padding: 12px 10px;
+                justify-content: center;
+                gap: 10px;
+            }
+            footer {
+                max-width: 100%;
+                font-size: 0.8rem;
+            }
+            nav {
+                gap: 6px;
+                justify-content: center;
+            }
+            nav a {
+                font-size: 0.9rem;
+                padding: 4px 6px;
+            }
+            .logo-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
     <header>
         <div class="logo-container" aria-label="Vinay Driving School logo">
             <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg">
@@ -41,9 +363,7 @@
 
         <section id="contact" aria-label="Contact Vinay Driving School">
             <h2>Contact Us</h2>
-    
-            <form id="contactForm" method="post" novalidate>
-                  {% csrf_token %}
+            <form id="contactForm" novalidate>
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
                 
@@ -55,12 +375,11 @@
                 
                 <button type="submit" aria-label="Send message via WhatsApp">Send Message</button>
             </form>
-
             <div class="contact-info" tabindex="0">
-                <p><strong>Email:</strong> info@vinaydrivingschool.com</p>
-                <p><strong>Address:</strong> Behind AMU City School , Zamirbad , Masoodabad, Aligarh</p>
+              
                 <p><strong>Phone:</strong> +91 9411047482</p>
                 <p><strong>Phone:</strong> +91 9412818997</p>
+                <p><strong>Address:</strong>Behind AMU City School , Zamirbad , Masoodabad, Aligarh</p>
             </div>
         </section>
     </main>
@@ -101,8 +420,7 @@
                 form.reset();
             }
         });
-    </script> 
+    </script>
 </body>
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
-</head>
-<body>
+</html>
+
